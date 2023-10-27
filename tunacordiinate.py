@@ -33,7 +33,8 @@ class TunaCoordinate:
 
         net = cv2.dnn.readNetFromTensorflow("dnn/frozen_inference_graph.pb",
                                             "dnn/mask_rcnn_inception_v2_coco_2018_01_28.pbtxt")
-        img = cv2.imread('tuna.jpg')
+        img = cv2.imread('tuna1.png')
+        print(img)
         height, width, _ = img.shape
         # Convert the image to grayscale
         # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -64,6 +65,7 @@ class TunaCoordinate:
             y = int(box[4] * height)
             x2 = int(box[5] * width)
             y2 = int(box[6] * height)
+
             # print(x)
             roi = img[y:y2, x:x2]
             # print(roi)
@@ -108,6 +110,7 @@ class TunaCoordinate:
                     #             1)
                     # print(point)
                     # Calculate the distance between two points
+
                     if len(contour) >= 2:
 
                         point1 = contour[0][0]
@@ -120,11 +123,9 @@ class TunaCoordinate:
 
                         # distance = calculate_distance(x1, y1, x2, y2)
                         # print(distance)
-                        coordinate_text = f"({x_coord}, {y_coord})"
-                        # cv2.putText(img, coordinate_text, (x_coord, y_coord), cv2.FONT_HERSHEY_SIMPLEX, 0.4,
-                        #             (255, 255, 0), 1)
+
                         # cv2.approxPolyDP()
-                        all_contours.extend(contours)
+                        # all_contours.extend(contours)
 
                     # Merge the contours to group objects that belong to the same fish
                 # merged_contours = merge_contours(all_contours)
@@ -143,6 +144,11 @@ class TunaCoordinate:
                         # Display the distance on the image
                         # cv2.putText(img, distance_text, (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
                         # Display or save the extracted fish
+                    coordinate_text = f"({x1}, {y1},{x2},{y2})"
+                    cv2.putText(img, coordinate_text, (x_coord, y_coord), cv2.FONT_HERSHEY_SIMPLEX, 0.4,
+                                (255, 255, 0), 1)
+
+
 
 
 
