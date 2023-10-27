@@ -31,7 +31,7 @@ net  = cv2.dnn.readNetFromTensorflow("dnn/frozen_inference_graph.pb","dnn/mask_r
 
 
 
-img = cv2.imread('bluetuna.jpg')
+img = cv2.imread('tuna.jpg')
 height, width, _ = img.shape
 
 # Black image
